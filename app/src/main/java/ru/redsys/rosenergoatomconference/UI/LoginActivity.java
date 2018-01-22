@@ -22,13 +22,11 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
 
     // UI references.
-    private AutoCompleteTextView mEmailView;
-    private EditText mPasswordView;
-    Button mEmailSignInButton;
+    AutoCompleteTextView emailView;
+    EditText passwordView;
+    Button submit;
     AlertDialog dialog;
-
-
-    TextView title;
+    TextView event, title, date;
 
 
     @Override
@@ -48,7 +46,25 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
      */
     private void initChildViews() {
 
-        InputStream inputStream = getResources().openRawResource(R.raw.text);
+
+        passwordView = findViewById(R.id.password);
+        emailView = findViewById(R.id.email);
+        submit = findViewById(R.id.email_sign_in_button);
+        dialog = new AlertDialog.Builder(this).create();
+
+        event = findViewById(R.id.login_event_type);
+        title = findViewById(R.id.login_event_title);
+        date = findViewById(R.id.login_event_date);
+
+        event.setText(getTextFromRawFile(R.raw.event));
+        title.setText(getTextFromRawFile(R.raw.title));
+        date.setText(getTextFromRawFile(R.raw.date));
+
+    }
+
+    private String getTextFromRawFile(int resourceId) {
+
+        InputStream inputStream = getResources().openRawResource(resourceId);
 
         byte[] b = new byte[0];
         try {
@@ -57,23 +73,14 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-        mPasswordView = (EditText) findViewById(R.id.password);
-        mEmailView = (AutoCompleteTextView) findViewById(R.id.email);
-        mEmailSignInButton = (Button) findViewById(R.id.email_sign_in_button);
-        dialog = new AlertDialog.Builder(this).create();
-
-        title = findViewById(R.id.main_title);
-
-        title.setText(new String(b));
-
+        return new String(b);
     }
 
 
     private void bindValues() {
 
 
-//        mPasswordView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+//        passwordView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
 //            @Override
 //            public boolean onEditorAction(TextView textView, int id, KeyEvent keyEvent) {
 //                if (id == R.id.login || id == EditorInfo.IME_NULL) {
@@ -84,7 +91,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 //            }
 //        });
 //
-        mEmailSignInButton.setOnClickListener(this);
+        submit.setOnClickListener(this);
 
 
     }
@@ -113,10 +120,10 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     @Override
     public void onClick(View view) {
 
-//        if (view == mEmailSignInButton) {
+//        if (view == submit) {
 //
-//            String username = mEmailView.getText().toString();
-//            String password = mPasswordView.getText().toString();
+//            String username = emailView.getText().toString();
+//            String password = passwordView.getText().toString();
 //
 //
 //            if (validated(username, password)) {

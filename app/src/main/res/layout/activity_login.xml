@@ -11,34 +11,51 @@
     tools:context=".UI.LoginActivity">
 
     <TextView
-        android:id="@+id/main_title"
+        android:id="@+id/login_event_type"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="Конференция"
+        android:textColor="@color/logo_grey_color"
+        android:textSize="23dp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/login_event_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Конференция"
+        android:textColor="@color/logo_grey_color"
+        android:textSize="18dp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/login_event_date"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="20dp"
-        android:layout_marginTop="10dp"
-        android:text="Конференция"
-        android:textSize="24dp"
+        android:text="25.01.18 - 27.01.18"
         android:textColor="@color/logo_grey_color"
-        android:textStyle="bold" />
+        android:textSize="16dp" />
 
     <ImageView
-        android:layout_width="100dp"
-        android:layout_height="100dp"
+        android:layout_width="wrap_content"
+        android:layout_height="75dp"
         android:src="@drawable/logo_img" />
 
     <ImageView
-        android:layout_margin="20dp"
         android:layout_width="wrap_content"
-        android:layout_height="20dp"
+        android:layout_height="16dp"
+        android:layout_margin="20dp"
         android:src="@drawable/rea_text_500" />
 
 
     <android.support.v7.widget.CardView
         android:id="@+id/container"
-        android:layout_marginTop="30dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center">
+        android:layout_gravity="center"
+        android:layout_marginTop="30dp">
 
 
         <LinearLayout
@@ -53,7 +70,8 @@
 
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp">
 
                 <AutoCompleteTextView
                     android:id="@+id/email"
@@ -91,10 +109,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:textColor="@color/white"
                 android:backgroundTint="@color/logo_blue_color"
                 android:text="@string/action_sign_in"
-                android:textStyle="bold" />
+                android:textColor="@color/white" />
 
             <TextView
                 android:layout_width="wrap_content"
