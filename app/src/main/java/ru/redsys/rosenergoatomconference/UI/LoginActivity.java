@@ -1,6 +1,7 @@
 package ru.redsys.rosenergoatomconference.UI;
 
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -8,12 +9,15 @@ import android.view.View;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.io.IOException;
 import java.io.InputStream;
 
 import ru.redsys.rosenergoatomconference.R;
+
+import static ru.redsys.rosenergoatomconference.utils.Helpers.getTextFromRawFile;
 
 /**
  * A login screen that offers login via email/password.
@@ -27,6 +31,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     Button submit;
     AlertDialog dialog;
     TextView event, title, date;
+    ImageView ivLogo;
 
 
     @Override
@@ -37,8 +42,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
         initChildViews();
         bindValues();
-
-
     }
 
     /**
@@ -56,25 +59,19 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         title = findViewById(R.id.login_event_title);
         date = findViewById(R.id.login_event_date);
 
-        event.setText(getTextFromRawFile(R.raw.event));
-        title.setText(getTextFromRawFile(R.raw.title));
-        date.setText(getTextFromRawFile(R.raw.date));
+        ivLogo = findViewById(R.id.main_logo);
 
-    }
+        String eventNameString = getTextFromRawFile(this, R.raw.event);
+        event.setText(eventNameString);
+        title.setText(getTextFromRawFile(this, R.raw.title));
+        date.setText(getTextFromRawFile(this, R.raw.date));
 
-    private String getTextFromRawFile(int resourceId) {
-
-        InputStream inputStream = getResources().openRawResource(resourceId);
-
-        byte[] b = new byte[0];
-        try {
-            b = new byte[inputStream.available()];
-            inputStream.read(b);
-        } catch (IOException e) {
-            e.printStackTrace();
+        if (eventNameString.toLowerCase().contains("новогодний")) {
+            ivLogo.setImageDrawable(getResources().getDrawable(R.drawable.tree));
         }
-        return new String(b);
     }
+
+
 
 
     private void bindValues() {
